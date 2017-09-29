@@ -1,0 +1,164 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#", 
+  "definitions": {}, 
+  "id": "http://example.com/example.json", 
+  "properties": {
+    "error": {
+      "id": "/properties/error", 
+      "type": "string"
+    }, 
+    "id": {
+      "id": "/properties/id", 
+      "type": "string"
+    }, 
+    "result": {
+      "id": "/properties/result", 
+      "properties": {
+        "balance": {
+          "id": "/properties/result/properties/balance", 
+          "type": "integer"
+        }, 
+        "blocks": {
+          "id": "/properties/result/properties/blocks", 
+          "type": "integer"
+        }, 
+        "burnaddress": {
+          "id": "/properties/result/properties/burnaddress", 
+          "type": "string"
+        }, 
+        "chainname": {
+          "id": "/properties/result/properties/chainname", 
+          "type": "string"
+        }, 
+        "connections": {
+          "id": "/properties/result/properties/connections", 
+          "type": "integer"
+        }, 
+        "description": {
+          "id": "/properties/result/properties/description", 
+          "type": "string"
+        }, 
+        "difficulty": {
+          "id": "/properties/result/properties/difficulty", 
+          "type": "number"
+        }, 
+        "errors": {
+          "id": "/properties/result/properties/errors", 
+          "type": "string"
+        }, 
+        "incomingpaused": {
+          "id": "/properties/result/properties/incomingpaused", 
+          "type": "boolean"
+        }, 
+        "keypoololdest": {
+          "id": "/properties/result/properties/keypoololdest", 
+          "type": "integer"
+        }, 
+        "keypoolsize": {
+          "id": "/properties/result/properties/keypoolsize", 
+          "type": "integer"
+        }, 
+        "miningpaused": {
+          "id": "/properties/result/properties/miningpaused", 
+          "type": "boolean"
+        }, 
+        "nodeaddress": {
+          "id": "/properties/result/properties/nodeaddress", 
+          "type": "string"
+        }, 
+        "nodeversion": {
+          "id": "/properties/result/properties/nodeversion", 
+          "type": "integer"
+        }, 
+        "paytxfee": {
+          "id": "/properties/result/properties/paytxfee", 
+          "type": "integer"
+        }, 
+        "port": {
+          "id": "/properties/result/properties/port", 
+          "type": "integer"
+        }, 
+        "protocol": {
+          "id": "/properties/result/properties/protocol", 
+          "type": "string"
+        }, 
+        "protocolversion": {
+          "id": "/properties/result/properties/protocolversion", 
+          "type": "integer"
+        }, 
+        "proxy": {
+          "id": "/properties/result/properties/proxy", 
+          "type": "string"
+        }, 
+        "reindex": {
+          "id": "/properties/result/properties/reindex", 
+          "type": "boolean"
+        }, 
+        "relayfee": {
+          "id": "/properties/result/properties/relayfee", 
+          "type": "integer"
+        }, 
+        "setupblocks": {
+          "id": "/properties/result/properties/setupblocks", 
+          "type": "integer"
+        }, 
+        "testnet": {
+          "id": "/properties/result/properties/testnet", 
+          "type": "boolean"
+        }, 
+        "timeoffset": {
+          "id": "/properties/result/properties/timeoffset", 
+          "type": "integer"
+        }, 
+        "version": {
+          "id": "/properties/result/properties/version", 
+          "type": "string"
+        }, 
+        "walletdbversion": {
+          "id": "/properties/result/properties/walletdbversion", 
+          "type": "integer"
+        }, 
+        "walletversion": {
+          "id": "/properties/result/properties/walletversion", 
+          "type": "integer"
+        }
+      }, 
+      "required": [
+        "relayfee", 
+        "balance", 
+        "protocolversion", 
+        "testnet", 
+        "walletdbversion", 
+        "keypoololdest", 
+        "paytxfee", 
+        "nodeversion", 
+        "proxy", 
+        "difficulty", 
+        "walletversion", 
+        "nodeaddress", 
+        "description", 
+        "blocks", 
+        "keypoolsize", 
+        "timeoffset", 
+        "version", 
+        "errors", 
+        "chainname", 
+        "port", 
+        "incomingpaused", 
+        "burnaddress", 
+        "connections", 
+        "miningpaused", 
+        "reindex", 
+        "protocol", 
+        "setupblocks"
+      ], 
+      "type": "object"
+    }
+  }, 
+  "required": [
+    "error", 
+    "result", 
+    "id"
+  ], 
+  "type": "object"
+}

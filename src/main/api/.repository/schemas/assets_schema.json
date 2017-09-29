@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#", 
+  "definitions": {}, 
+  "id": "http://example.com/example.json", 
+  "properties": {
+    "error": {
+      "id": "/properties/error", 
+      "type": "string"
+    }, 
+    "id": {
+      "id": "/properties/id", 
+      "type": "string"
+    }, 
+    "result": {
+      "additionalItems": false, 
+      "id": "/properties/result", 
+      "items": {
+        "id": "/properties/result/items", 
+        "properties": {
+          "assetref": {
+            "id": "/properties/result/items/properties/assetref", 
+            "type": "string"
+          }, 
+          "details": {
+            "id": "/properties/result/items/properties/details", 
+            "properties": {
+              "UPC": {
+                "id": "/properties/result/items/properties/details/properties/UPC", 
+                "type": "string"
+              }
+            }, 
+            "required": [
+              "UPC"
+            ], 
+            "type": "object"
+          }, 
+          "issueqty": {
+            "id": "/properties/result/items/properties/issueqty", 
+            "type": "integer"
+          }, 
+          "issueraw": {
+            "id": "/properties/result/items/properties/issueraw", 
+            "type": "integer"
+          }, 
+          "issuetxid": {
+            "id": "/properties/result/items/properties/issuetxid", 
+            "type": "string"
+          }, 
+          "multiple": {
+            "id": "/properties/result/items/properties/multiple", 
+            "type": "integer"
+          }, 
+          "name": {
+            "id": "/properties/result/items/properties/name", 
+            "type": "string"
+          }, 
+          "open": {
+            "id": "/properties/result/items/properties/open", 
+            "type": "boolean"
+          }, 
+          "subscribed": {
+            "id": "/properties/result/items/properties/subscribed", 
+            "type": "boolean"
+          }, 
+          "units": {
+            "id": "/properties/result/items/properties/units", 
+            "type": "number"
+          }
+        }, 
+        "required": [
+          "issuetxid", 
+          "open", 
+          "issueqty", 
+          "units", 
+          "details", 
+          "assetref", 
+          "subscribed", 
+          "name", 
+          "multiple", 
+          "issueraw"
+        ], 
+        "type": "object"
+      }, 
+      "type": "array"
+    }
+  }, 
+  "required": [
+    "error", 
+    "result", 
+    "id"
+  ], 
+  "type": "object"
+}

@@ -1,0 +1,16 @@
+{
+  "result": [
+      {
+          "name": "Widget A",
+          "assetref": "62-265-23667",
+          "qty": 490
+      },
+      {
+          "name": "Widget B",
+          "assetref": "69-266-38447",
+          "qty": 410
+      }
+  ],
+  "error": "",
+  "id": ""
+}

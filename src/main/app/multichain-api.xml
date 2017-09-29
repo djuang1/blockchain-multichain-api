@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:dw="http://www.mulesoft.org/schema/mule/ee/dw" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/apikit http://www.mulesoft.org/schema/mule/apikit/current/mule-apikit.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
+http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd
+http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd">
+    <http:listener-config name="multichain-api-httpListenerConfig" host="0.0.0.0" port="8081" doc:name="HTTP Listener Configuration" />
+    <apikit:config name="multichain-api-config" raml="multichain-api.raml" consoleEnabled="false" doc:name="Router" />
+    <http:request-config name="HTTP_Request_Node" host="${rpchostip}" port="${rpcport}" basePath="/" doc:name="HTTP Request Configuration">
+        <http:basic-authentication username="${rpcuser}" password="${rpcpassword}" preemptive="true" />
+    </http:request-config>
+    <flow name="multichain-api-main">
+        <http:listener config-ref="multichain-api-httpListenerConfig" path="/api/*" doc:name="HTTP" />
+        <apikit:router config-ref="multichain-api-config" doc:name="APIkit Router" />
+        <exception-strategy ref="multichain-api-apiKitGlobalExceptionMapping" doc:name="Reference Exception Strategy" />
+    </flow>
+    <flow name="multichain-api-console">
+        <http:listener config-ref="multichain-api-httpListenerConfig" path="/console/*" doc:name="HTTP" />
+        <apikit:console config-ref="multichain-api-config" doc:name="APIkit Console" />
+    </flow>
+    <flow name="get:/addresses:multichain-api-config">
+        <set-payload value="{&quot;method&quot;:&quot;getaddresses&quot;}" doc:name="Set Payload" />
+        <http:request config-ref="HTTP_Request_Node" path="/" method="POST" doc:name="HTTP" />
+    </flow>
+    <flow name="get:/assets:multichain-api-config">
+        <set-payload value="{&quot;method&quot;:&quot;listassets&quot;}" doc:name="Set Payload" />
+        <http:request config-ref="HTTP_Request_Node" path="/" method="POST" doc:name="HTTP" />
+    </flow>
+    <flow name="get:/address/{address}/balance:multichain-api-config">
+        <set-payload value="{&quot;method&quot;:&quot;getaddressbalances&quot;,&quot;params&quot;:[&quot;#[address]&quot;]}" doc:name="Set Payload" />
+        <http:request config-ref="HTTP_Request_Node" path="/" method="POST" doc:name="HTTP" />
+    </flow>
+    <flow name="get:/info:multichain-api-config">
+        <set-payload value="{&quot;method&quot;:&quot;getinfo&quot;}" doc:name="Set Payload" />
+        <http:request config-ref="HTTP_Request_Node" path="/" method="POST" doc:name="HTTP" />
+    </flow>
+    <flow name="get:/address/{address}/transactions:multichain-api-config">
+        <set-payload value="{&quot;method&quot;:&quot;listaddresstransactions&quot;,&quot;params&quot;:[&quot;#[address]&quot;]}" doc:name="Set Payload" />
+        <http:request config-ref="HTTP_Request_Node" path="/" method="POST" doc:name="HTTP" />
+    </flow>
+    <flow name="post:/asset/send/{fromaddress}:multichain-api-config">
+        <set-payload value="{&quot;method&quot;:&quot;sendassetfrom&quot;,&quot;params&quot;:[&quot;#[fromaddress]&quot;,&quot;#[message.inboundProperties.'http.query.params'.toaddress]&quot;,&quot;#[message.inboundProperties.'http.query.params'.asset]&quot;,#[message.inboundProperties.'http.query.params'.qty]]}" doc:name="Set Payload" />
+        <http:request config-ref="HTTP_Request_Node" path="/" method="POST" doc:name="HTTP">
+            <http:success-status-code-validator values="200..500" />
+        </http:request>
+        <choice doc:name="Choice">
+            <when expression="#[message.inboundProperties['http.status'] == '200']">
+                <!-- Do something for 200 responses -->
+                <logger level="INFO" doc:name="Logger" />
+            </when>
+            <otherwise>
+                <set-property propertyName="http.status" value="400" doc:name="400 Status" />
+                <!-- For all other responses -->
+            </otherwise>
+        </choice>
+    </flow>
+    <flow name="get:/address/{address}/transaction/{txid}:multichain-api-config">
+    	<set-payload value="{&quot;method&quot;:&quot;getaddresstransaction&quot;,&quot;params&quot;:[&quot;#[address]&quot;,&quot;#[txid]&quot;]}" doc:name="Set Payload" />
+        <http:request config-ref="HTTP_Request_Node" path="/" method="POST" doc:name="HTTP">
+        	<http:success-status-code-validator values="200..500" />
+        </http:request>
+        <choice doc:name="Choice">
+            <when expression="#[message.inboundProperties['http.status'] == '200']">
+                <!-- Do something for 200 responses -->
+                <logger level="INFO" doc:name="Logger" />
+            </when>
+            <otherwise>
+                <set-property propertyName="http.status" value="400" doc:name="400 Status" />
+                <!-- For all other responses -->
+            </otherwise>
+        </choice>   
+	</flow>
+    <apikit:mapping-exception-strategy name="multichain-api-apiKitGlobalExceptionMapping">
+        <apikit:mapping statusCode="404">
+            <apikit:exception value="org.mule.module.apikit.exception.NotFoundException" />
+            <set-property propertyName="Content-Type" value="application/json" doc:name="Property" />
+            <set-payload value="{ &quot;message&quot;: &quot;Resource not found&quot; }" doc:name="Set Payload" />
+        </apikit:mapping>
+        <apikit:mapping statusCode="405">
+            <apikit:exception value="org.mule.module.apikit.exception.MethodNotAllowedException" />
+            <set-property propertyName="Content-Type" value="application/json" doc:name="Property" />
+            <set-payload value="{ &quot;message&quot;: &quot;Method not allowed&quot; }" doc:name="Set Payload" />
+        </apikit:mapping>
+        <apikit:mapping statusCode="415">
+            <apikit:exception value="org.mule.module.apikit.exception.UnsupportedMediaTypeException" />
+            <set-property propertyName="Content-Type" value="application/json" doc:name="Property" />
+            <set-payload value="{ &quot;message&quot;: &quot;Unsupported media type&quot; }" doc:name="Set Payload" />
+        </apikit:mapping>
+        <apikit:mapping statusCode="406">
+            <apikit:exception value="org.mule.module.apikit.exception.NotAcceptableException" />
+            <set-property propertyName="Content-Type" value="application/json" doc:name="Property" />
+            <set-payload value="{ &quot;message&quot;: &quot;Not acceptable&quot; }" doc:name="Set Payload" />
+        </apikit:mapping>
+        <apikit:mapping statusCode="400">
+            <apikit:exception value="org.mule.module.apikit.exception.BadRequestException" />
+            <set-property propertyName="Content-Type" value="application/json" doc:name="Property" />
+            <set-payload value="{ &quot;message&quot;: &quot;Bad request&quot; }" doc:name="Set Payload" />
+        </apikit:mapping>
+    </apikit:mapping-exception-strategy>
+</mule>

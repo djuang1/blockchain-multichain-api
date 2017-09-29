@@ -1,0 +1,56 @@
+{
+  "result": [
+      {
+          "balance": {
+              "amount": 0,
+              "assets": []
+          },
+          "myaddresses": [
+              "12J3BVBnmDD9NYFtT9kXmB7QvfKHanVHyzv4ud"
+          ],
+          "addresses": [],
+          "permissions": [],
+          "items": [],
+          "data": [],
+          "confirmations": 60,
+          "blockhash": "0042b113a0897d0f0ea33471802ba51422192c99473957a56f6ff6e3d93770e1",
+          "blockindex": 8,
+          "blocktime": 1506565956,
+          "txid": "0c97b37990f98f2c7797cfc451329ccb04e9a297fad2ec3bdf822450d873ad2f",
+          "valid": true,
+          "time": 1506456304,
+          "timereceived": 1506456304
+      },
+      {
+          "balance": {
+              "amount": 0,
+              "assets": [
+                  {
+                      "name": "Widget A",
+                      "assetref": "62-265-23667",
+                      "qty": -500
+                  }
+              ]
+          },
+          "myaddresses": [
+              "12J3BVBnmDD9NYFtT9kXmB7QvfKHanVHyzv4ud"
+          ],
+          "addresses": [
+              "17QE7vW8RoRomCGgg8vnyjxo7MDjuFYt6b2RDB"
+          ],
+          "permissions": [],
+          "items": [],
+          "data": [],
+          "confirmations": 60,
+          "blockhash": "0042b113a0897d0f0ea33471802ba51422192c99473957a56f6ff6e3d93770e1",
+          "blockindex": 10,
+          "blocktime": 1506565956,
+          "txid": "d5001b1e5672614ef8a1d554189d85256e4e90c6798d551d2864329f17a38aa6",
+          "valid": true,
+          "time": 1506456314,
+          "timereceived": 1506456314
+      }
+  ],
+  "error": "",
+  "id": ""
+}

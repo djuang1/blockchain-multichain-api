@@ -1,0 +1,34 @@
+{
+  "result": [
+      {
+          "name": "Widget A",
+          "issuetxid": "735c43f2a6b9d10a4f771560ea27ec11973b3871b3cd36ed6a61254265545d78",
+          "assetref": "62-265-23667",
+          "multiple": 100,
+          "units": 0.01,
+          "open": true,
+          "details": {
+              "UPC": "12419827639123"
+          },
+          "issueqty": 1600,
+          "issueraw": 160000,
+          "subscribed": false
+      },
+      {
+          "name": "Widget B",
+          "issuetxid": "2f96d3cb36c058bfabd8be0d5af6829467a47d0f04e223e7baf4b99bd1998b2e",
+          "assetref": "69-266-38447",
+          "multiple": 100,
+          "units": 0.01,
+          "open": true,
+          "details": {
+              "UPC": "12419827639122"
+          },
+          "issueqty": 1000,
+          "issueraw": 100000,
+          "subscribed": false
+      }
+  ],
+  "error": "",
+  "id": ""
+}

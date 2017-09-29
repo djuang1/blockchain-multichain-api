@@ -1,0 +1,33 @@
+{
+    "result": {
+        "version": "1.0.1",
+        "nodeversion": 10001901,
+        "protocolversion": 10009,
+        "chainname": "chain1",
+        "description": "MultiChain chain1",
+        "protocol": "multichain",
+        "port": 7737,
+        "setupblocks": 60,
+        "nodeaddress": "chain1@172.30.2.35:7737",
+        "burnaddress": "1XXXXXXWxFXXXXXXbXXXXXXXUDXXXXXXYdDxo7",
+        "incomingpaused": false,
+        "miningpaused": false,
+        "walletversion": 60000,
+        "balance": 0,
+        "walletdbversion": 2,
+        "reindex": false,
+        "blocks": 143,
+        "timeoffset": 0,
+        "connections": 1,
+        "proxy": "",
+        "difficulty": 6e-8,
+        "testnet": false,
+        "keypoololdest": 1506450172,
+        "keypoolsize": 2,
+        "paytxfee": 0,
+        "relayfee": 0,
+        "errors": ""
+    },
+    "error": "",
+    "id": ""
+}

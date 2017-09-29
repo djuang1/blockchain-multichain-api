@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#", 
+  "definitions": {}, 
+  "id": "http://example.com/example.json", 
+  "properties": {
+    "error": {
+      "id": "/properties/error", 
+      "type": "string"
+    }, 
+    "id": {
+      "id": "/properties/id", 
+      "type": "string"
+    }, 
+    "result": {
+      "id": "/properties/result", 
+      "type": "string"
+    }
+  }, 
+  "required": [
+    "error", 
+    "result", 
+    "id"
+  ], 
+  "type": "object"
+}

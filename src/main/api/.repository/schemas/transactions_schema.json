@@ -1,0 +1,148 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#", 
+  "definitions": {}, 
+  "id": "http://example.com/example.json", 
+  "properties": {
+    "error": {
+      "id": "/properties/error", 
+      "type": "string"
+    }, 
+    "id": {
+      "id": "/properties/id", 
+      "type": "string"
+    }, 
+    "result": {
+      "additionalItems": false, 
+      "id": "/properties/result", 
+      "items": {
+        "id": "/properties/result/items", 
+        "properties": {
+          "addresses": {
+            "additionalItems": false, 
+            "id": "/properties/result/items/properties/addresses", 
+            "items": {
+              "description": "This accepts anything, as long as it's valid JSON.", 
+              "title": "Empty Object"
+            }, 
+            "type": "array"
+          }, 
+          "balance": {
+            "id": "/properties/result/items/properties/balance", 
+            "properties": {
+              "amount": {
+                "id": "/properties/result/items/properties/balance/properties/amount", 
+                "type": "integer"
+              }, 
+              "assets": {
+                "additionalItems": false, 
+                "id": "/properties/result/items/properties/balance/properties/assets", 
+                "items": {
+                  "description": "This accepts anything, as long as it's valid JSON.", 
+                  "title": "Empty Object"
+                }, 
+                "type": "array"
+              }
+            }, 
+            "required": [
+              "assets", 
+              "amount"
+            ], 
+            "type": "object"
+          }, 
+          "blockhash": {
+            "id": "/properties/result/items/properties/blockhash", 
+            "type": "string"
+          }, 
+          "blockindex": {
+            "id": "/properties/result/items/properties/blockindex", 
+            "type": "integer"
+          }, 
+          "blocktime": {
+            "id": "/properties/result/items/properties/blocktime", 
+            "type": "integer"
+          }, 
+          "confirmations": {
+            "id": "/properties/result/items/properties/confirmations", 
+            "type": "integer"
+          }, 
+          "data": {
+            "additionalItems": false, 
+            "id": "/properties/result/items/properties/data", 
+            "items": {
+              "description": "This accepts anything, as long as it's valid JSON.", 
+              "title": "Empty Object"
+            }, 
+            "type": "array"
+          }, 
+          "items": {
+            "additionalItems": false, 
+            "id": "/properties/result/items/properties/items", 
+            "items": {
+              "description": "This accepts anything, as long as it's valid JSON.", 
+              "title": "Empty Object"
+            }, 
+            "type": "array"
+          }, 
+          "myaddresses": {
+            "additionalItems": false, 
+            "id": "/properties/result/items/properties/myaddresses", 
+            "items": {
+              "id": "/properties/result/items/properties/myaddresses/items", 
+              "type": "string"
+            }, 
+            "type": "array"
+          }, 
+          "permissions": {
+            "additionalItems": false, 
+            "id": "/properties/result/items/properties/permissions", 
+            "items": {
+              "description": "This accepts anything, as long as it's valid JSON.", 
+              "title": "Empty Object"
+            }, 
+            "type": "array"
+          }, 
+          "time": {
+            "id": "/properties/result/items/properties/time", 
+            "type": "integer"
+          }, 
+          "timereceived": {
+            "id": "/properties/result/items/properties/timereceived", 
+            "type": "integer"
+          }, 
+          "txid": {
+            "id": "/properties/result/items/properties/txid", 
+            "type": "string"
+          }, 
+          "valid": {
+            "id": "/properties/result/items/properties/valid", 
+            "type": "boolean"
+          }
+        }, 
+        "required": [
+          "permissions", 
+          "valid", 
+          "data", 
+          "balance", 
+          "time", 
+          "timereceived", 
+          "confirmations", 
+          "blocktime", 
+          "txid", 
+          "myaddresses", 
+          "items", 
+          "blockindex", 
+          "blockhash", 
+          "addresses"
+        ], 
+        "type": "object"
+      }, 
+      "type": "array"
+    }
+  }, 
+  "required": [
+    "error", 
+    "result", 
+    "id"
+  ], 
+  "type": "object"
+}

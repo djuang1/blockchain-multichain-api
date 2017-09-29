@@ -1,0 +1,125 @@
+#%RAML 1.0
+title: MultiChain API
+description: MultiChain extends the Bitcoin Core API
+version: 1.0
+mediaType: application/json
+baseUri: https://mocksvc.mulesoft.com/mocks/3871d1a0-e6a8-4d02-b51b-10556e1ea1c1/api # baseUri: http://localhost:8081/api
+types:
+  info: !include schemas/getinfo_schema.json
+  addresses: !include schemas/addresses_schema.json
+  transaction: !include schemas/transaction_schema.json
+  transactions: !include schemas/transactions_schema.json
+  assets: !include schemas/assets_schema.json
+  asset_send: !include schemas/asset_send_schema.json
+  balance: !include schemas/address_balance_schema.json
+/info:  
+  get:
+    description: Returns general information about this node and blockchain.
+    responses: 
+      200:
+        body: 
+          type: info
+          example: !include examples/getinfo.json
+/addresses:  
+  get:
+    description: Returns a list of addresses in this node’s wallet.
+    responses: 
+      200:
+        body: 
+          type: addresses
+          example: !include examples/addresses.json
+/address/{address}:
+  uriParameters:
+     address:
+       description: The id of the address
+       type: string
+       default: "17QE7vW8RoRomCGgg8vnyjxo7MDjuFYt6b2RDB"
+       required: true
+  /transaction/{txid}:
+    uriParameters:
+     txid:
+       description: The id of the transaction
+       type: string
+       default: "b3e0a93914462c0e08a8f2495e3017df5be594fd8f868bfec4d930248f92ad20"
+       required: true
+    get:
+      description: Provides information about transaction txid related to address in this node’s wallet, including how it affected that address’s balance.
+      responses: 
+        200:
+          body: 
+            type: transaction
+            example: !include examples/transaction.json
+        400:
+          body: 
+            application/json:
+              example: |
+                {
+                    "result": "",
+                    "error": {
+                        "code": -5,
+                        "message": "Invalid address: 12J3BVBnmDD9NYFtT9kXmB7QvfKHanVHyzv2ud"
+                    },
+                    "id": ""
+                }
+  /transactions:
+    get:
+      description: Lists information about the most recent transactions related to address in this node’s wallet, including how they affected that address’s balance.
+      responses: 
+        200:
+          body:    
+            type: transactions
+            example: !include examples/transactions.json             
+  /balance:
+    get:
+      description: Returns a list of all the asset balances for address in this node’s wallet.
+      responses: 
+        200:
+          body: 
+            type: balance
+            example: !include examples/address_balance.json              
+/assets:
+  get:
+    description: Returns information about assets issued on the blockchain. 
+    responses: 
+      200:
+        body: 
+          type: assets
+          example: !include examples/assets.json
+/asset:
+  /send/{fromaddress}:
+    uriParameters:
+      fromaddress:
+        description: The id of the address to send assets from.
+        type: string
+        default: "17QE7vW8RoRomCGgg8vnyjxo7MDjuFYt6b2RDB"
+        required: true
+    post:
+      description: Sends a quantity of an asset to an address, returning the transaction ID.
+      queryParameters: 
+        toaddress:
+          description: The id of the address to send assets to.
+          default: "12J3BVBnmDD9NYFtT9kXmB7QvfKHanVHyzv4ud"
+        asset:
+          description: The asset to issue.
+          default: "Widget A"
+        qty:
+          description: The total unit of assets to send.
+          type: integer
+          default: 10
+      responses: 
+        200:
+          body:
+            type: asset_send
+            example: !include examples/asset_send.json
+        400:
+          body: 
+            application/json:
+              example: |
+                {
+                    "result": "",
+                    "error": {
+                        "code": -708,
+                        "message": "Asset with this name not found: Widget Z"
+                    },
+                    "id": ""
+                }
